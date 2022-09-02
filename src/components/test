@@ -1,0 +1,79 @@
+//客户端接收广播路由(函数):  onMsg() Client receives broadcast route
+
+11.开始下注: //start betting
+   {
+       "code":"03",                      
+       "msg":"开始下注",
+       "rType":"bjl",
+       "roomId":"3",             
+       "data":
+       {
+           state:1,                    //状态:下注 Status: Bet
+           ye:100,                     //余额:100 balance
+           xh:20000,
+           desk_limit:20000, 
+           phone_desk_limit:20000,    //电话桌限红,暂时用不上 The telephone desk is limited to red, temporarily unavailable
+           betTime:30, 
+           road:"abcd",
+           bl:"1.97",
+           js:"1-100",
+           enable:1,                  //帐号禁启用(1启用  0禁用),前端收到0指令,则退出 Account is disabled (1 enable 0 disable), the front end receives 0 command, then exit
+       }
+    }     
+   
+    
+12.停止下注  //stop betting
+  {
+       "code":"04",                      
+       "msg":"停止下注",
+       "rType":"bjl",
+       "roomId":"3",             
+       "data":
+       {
+           state:2             //状态:停上下注 Status: Stop betting
+        }
+    }   
+
+13.开牌: //open
+   {
+       "code":"05",                      
+       "msg":"开牌",
+       "rType":"bjl",
+       "roomId":"3",             
+       "data":
+       {
+           state:3            //状态:开奖(或结算) Status: lottery draw (or settlement)
+           point:3,5         //庄3点闲5点 Zhuang 3 o'clock idle 5 o'clock
+           result:b           //a:庄 b:庄 闲对 c:庄 庄对 d:庄 闲对 庄对 e:闲 f:闲 闲对 g:闲 庄对 h:闲 闲对 庄对 i:和  j:和 闲对  k:和 庄对 l:和 闲对 庄对
+           pk:a1,a2,c3$a3,b2,d9       //所开牌 Opened
+       }   
+    }
+
+14.结算 //settlement
+ ｛
+       "code":"06",
+       "msg":"结算",
+       "rType":"bjl",
+       "roomId":"3",             
+       "data":
+       {
+           state:3            //状态:开奖(或结算) Status: lottery draw (or settlement)
+           xz:10              //下注 bet
+           fh:0               //返还 return
+           yl:-10                                 //盈利 profit
+           road:"a-53^b-23",                      //路单 a是庄 ,53是庄闲点数(庄在前）Road list a is the banker, 53 is the banker's idle point (the banker is in the front)
+        }           
+  ｝
+
+15.发牌(单张,每发一张牌显示一张)  //Dealing cards (single card, one card is displayed for each card dealt)                //注:增加功能 Note: add function
+   {
+       "code":"08",
+       "msg":"发单张牌",
+       "rType":"bjl",
+       "roomId":"3",             
+       "data":
+       {
+           state:3            //状态:开奖(或结算) Status: lottery draw (or settlement)
+           pk:1^2^a3          //1是位置(1-庄 2-闲 3-庄  4-闲 5-庄补牌 6-闲补牌,可能有变)  2是牌序号(1-5)  a3:开什么牌
+        }           
+   }
