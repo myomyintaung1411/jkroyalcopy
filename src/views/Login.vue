@@ -96,11 +96,14 @@ export default {
     },
 
     login() {
-      const sendStr = {
-        router: 'Login',
-        JsonData: { name: this.name, password: md5(this.password), ip: '', terminal: 'jk' }
-      } 
-      this.$store.dispatch('app/login', sendStr).then(() => {
+      // const sendStr = {
+      //   router: 'Login',
+      //   JsonData: { name: this.name, password: md5(this.password), ip: '', terminal: 'jk' }
+      // } 
+      let data = {
+        data: `01;${this.name};${md5(this.password)};jk;1`,
+      };
+      this.$store.dispatch('app/login', data).then(() => {
         pomelo.conn((err,res)=>{
           if(err) console.error(err);
           if(res.code === 200){

@@ -74,7 +74,7 @@ export default {
 
   actions: {
     login({ commit }, sendStr) {
-      console.log(sendStr.JsonData.name + "sendstr *****");
+      console.log(sendStr , "sendstr *****");
       // const { username, password } = sendStr
       return new Promise((resolve, reject) => {
         const en = Global.gameEn
