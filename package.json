@@ -14,7 +14,7 @@
     "swiper": "^8.3.2",
     "vue": "^3.2.37",
     "vue-i18n": "^9.1.10",
-    "vue-router": "^4.0.16",
+    "vue-router": "^4.1.6",
     "vuejs-paginate-next": "^1.0.2",
     "vuex": "^4.0.2"
   },
